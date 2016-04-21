@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<link rel="stylesheet" href="{{ STATIC_URL }}index.css" type="text/css"/>
+<meta http-equiv=Content-Type Content="text/html; charset=utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<title>사방팔방 관리자 페이지</title>
+
+<body>
+<form name="roomform" action="." method="post" enctype="multipart/form-data">
+{% csrf_token %}
+<div id="container">
+    <div id="logo"> 
+
+		<tr>
+		<td height=50px><img></td>
+		</tr>
+		<tr>
+		<th>한양 24공인중개사</th></tr>
+		<tr>
+		<td><img src="logo.png"></td>
+		</tr>
+
+    </div>
+
+    <div id="wrapper"> 
+        <div id="input">
+		<table>
+			<th>층</th>
+			<td>
+			<span>
+			  <select class="form-control" name="floor">
+			    <option value="-1">반지하</option>
+				<option value="1">1층</option>
+				<option value="2">2층</option>
+				<option value="3">3층</option>
+				<option value="4">4층</option>
+				<option value="5">5층</option>
+			</select>
+			</span>
+			</td>
+			<tr>
+			<th>지역</th>
+			<td>
+			<span>
+			<select class="form-control" name="area">
+				<option value="1">1구역</option>
+				<option value="2">2구역</option>
+				<option value="3">3구역</option>
+				<option value="4">4구역</option>
+				<option value="5">5구역</option>
+				<option value="6">6구역</option>
+			</select>
+			</span>
+			</td>
+			</tr>
+			<tr>
+			<th>보증금</th>
+			<td>
+			<span>
+			<input id ="field"type="text" name="security_deposit" placeholder="ex)300만원 => 300"/>
+			</span>
+			</td>
+			</tr>
+			<tr>
+			<th>월세</th>
+			<td>
+			<span><input id ="field" type="text" name="month_price" placeholder="숫자만 입력"/></span>
+			</td>
+			</tr>
+			<tr>
+			<th>관리비</th>
+			<td><span><input id ="field" type="text" name="management_cost" placeholder="숫자만 입력"/></span></td></tr>
+			<tr>
+			 	<th>기간</th>
+				<td><span><select class="form-control" name="term">
+					<option value="">6개월</option>
+					<option value="">1년</option>
+					<option value="">2년</option>
+				</select>
+				</span>
+				</td>
+				</tr>
+			<tr>
+			<th>베란다</th>
+				<td>
+				<span>
+					<input type="radio"id="ver" name="veranda"  value="true"/>
+					<label for="ver">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="nover" name="veranda" value="false"/>
+					<label for="nover">없어요</label>
+				</span>
+				</td>
+			</tr>
+			<th>부엌</th>	
+				<td>
+				<span>
+					<input type="radio" id="kitchen_yes" name="kitchen"  value="true"/>
+					<label for="kitchen_yes">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio" id="kitchen_no" name="kitchen" value="false"/>
+
+					<label for="kitchen_no">없어요</label>
+				</span>
+				</td>
+			</tr>
+			<th>TV</th>
+			<td>
+				<span>
+					<input type="radio" id="tv_y" name="tv"  value="true"/>
+					<label for="tv_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio" id="tv_n" name="tv" value="false"/>
+					<label for="tv_n">없어요</label>
+				</span>
+			</td></tr>
+			<th>전자렌지</th>
+			<td>
+				<span>
+					<input type="radio"id="mw_y" name="microwave" value="true"/>
+					<label for="mw_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="mw_n" name="microwave" value="false"/>
+					<label for="mw_n">없어요</label>
+				</span>
+			</td></tr>
+			<th>투룸</th>
+			<td>
+				<span>
+					<input type="radio" id="two_y" name="two_room" value="true"/>
+					<label for="two_y">맞아요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio" id="two_n"  name="two_room" value="false"/>
+					<label for="two_n">아니에요</label>
+				</span>
+			</td></tr>
+			</table>
+			<table id="table2">
+			<tr>
+			<th>기타</th>
+			<td><input id ="hash" type="text" name="hash1" placeholder="#햇빛 => 햇빛"/>
+			</td>
+			<td>
+			<input id ="hash" type="text" name="hash2" placeholder="#햇빛 => 햇빛"/>
+			</td>
+			<td>
+			<input id ="hash" type="text" name="hash3" placeholder="#햇빛 => 햇빛"/>
+			</td></tr>
+			<tr>
+			<td height=10px>&nbsp;</td></tr>
+			<tr>
+			<th>사진들</th>
+			</table>
+			{{ formset.management_form }}
+			{% for fomr in formset %}
+			{{ form }}
+			{% endfor %}
+			<input type="submit" name="submit" value="등록" />
+		</form>
+        </div>
+        <div id="result">
+		
+	</div> 
+    </div>
+</div>
+
+</body>
+</html>

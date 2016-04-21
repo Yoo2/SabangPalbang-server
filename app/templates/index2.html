@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <form name="roomform" action="." method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <table>
+	<tr>
+	  <th>area</th>
+	  <th>size</th>
+	  <th>floor</th>
+	  <th>security_deposit</th>
+	  <th>month_price</th>
+	  <th>management_cost</th>
+	  <th>pet</th>
+	  <th>term</th>
+	  <th>veranda</th>
+	  <th>kitchen</th>
+	  <th>tv</th>
+	  <th>microwave</th>
+	  <th>two_room</th>
+	  <th>detail</th>
+	  <th>hash1</th>
+	  <th>hash2</th>
+	  <th>hash3</th>
+	</tr>
+	<tr>
+	  <td><input type="text" name="area"></td>
+	  <td><input type="text" name="size"></td>
+	  <td><input type="text" name="floor" /></td>
+	  <td><input type="text" name="security_deposit" /></td>
+	  <td><input type="text" name="month_price" /></td>
+	  <td><input type="text" name="management_cost" /></td>
+	  <td>가능 <input type="radio" name="pet"  value="true"/> 불가능 <input type="radio" name="pet" value="false"/></td>
+	  <td><input type="text" name="term"/></td>
+	  <td> O <input type="radio" name="veranda"  value="true"/> X <input type="radio" name="veranda" value="false"/></td>
+	  <td> O <input type="radio" name="kitchen"  value="true"/> X <input type="radio" name="kitchen" value="false"/></td>
+	  <td> O <input type="radio" name="tv"  value="true"/> X <input type="radio" name="tv" value="false"/></td>
+	  <td> O <input type="radio" name="microwave" value="true"/> X <input type="radio" name="microwave" value="false"/></td>
+  	  <td> O <input type="radio" name="two_room" value="true"/> X <input type="radio" name="two_room" value="false"/></td>
+	  <td><textarea name="detail" ></textarea></td>
+	  <td><input type="text" name="hash1" /></td>
+	  <td><input type="text" name="hash2" /></td>
+	  <td><input type="text" name="hash3" /></td>
+</tr>
+</table>
+
+{{ formset.management_form }}
+{% for form in formset %}
+{{ form }}
+{% endfor %}
+
+<input type="submit" name="submit" value="등록" />
+</form>
+<br>
+<h1>result<h1>
+
+    <script language="javascript">
+      function formCheck () {
+      var form = document.roomform;
+
+      if(){}
+      }
+      </script>
+</body>
+</html>

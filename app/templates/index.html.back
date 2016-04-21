@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/index2.css' %}" type="text/css"/>
+<meta http-equiv=Content-Type Content="text/html; charset=utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<title>사방팔방 관리자 페이지</title>
+
+</head>
+<body>
+
+<div id="container">
+    <div id="logo"> 
+		<tr>
+		<td height=50px><img></td>
+		</tr>
+		<tr>
+		<th>한양 21공인중개사</th></tr>
+		<tr>
+		<td><img src="logo.png"></td>
+		</tr>
+
+    </div>
+
+    <div id="wrapper"> 
+    <div id="input">
+      <form name="roomform" action="." method="post" enctype="multipart/form-data">
+{% csrf_token %}
+      <table>
+	<tr>
+		  <th>층</th>
+			<td>
+			<span>
+			  <select class="form-control" name="floor">
+			    <option value="-1">반지하</option>
+				<option value="1">1층</option>
+				<option value="2">2층</option>
+				<option value="3">3층</option>
+				<option value="4">4층</option>
+				<option value="5">5층</option>
+			</select>
+			</span>
+		      </td>
+		    </tr>
+		    <tr>
+		      <th>크기</th>
+		      <td>
+			<span><input id ="field"type="text" name="size"
+    placeholder="평으로 입력"/></span>
+		      </td>
+		    </tr>
+			<tr>
+			<th>지역</th>
+			<td>
+			<span>
+			<select class="form-control" name="area">
+				<option value="1">1구역</option>
+				<option value="2">2구역</option>
+				<option value="3">3구역</option>
+				<option value="4">4구역</option>
+				<option value="5">5구역</option>
+				<option value="6">6구역</option>
+			</select>
+			</span>
+			</td>
+			</tr>
+			<tr>
+			<th>보증금</th>
+			<td>
+			<span>
+			<input id ="field"type="text" name="security_deposit" placeholder="ex)300만원 => 300"/>
+			</span>
+			</td>
+			</tr>
+			<tr>
+			<th>월세</th>
+			<td>
+			<span><input id ="field" type="text" name="month_price" placeholder="숫자만 입력"/></span>
+			</td>
+			</tr>
+			<tr>
+			<th>관리비</th>
+			<td><span><input id ="field" type="text" name="management_cost" placeholder="숫자만 입력"/></span></td></tr>
+			<tr>
+			 	<th>기간</th>
+				<td><span><select class="form-control" name="term">
+					<option value="6개월">6개월</option>
+					<option value="1년">1년</option>
+					<option value="2년">2년</option>
+				</select>
+				</span>
+				</td>
+				</tr>
+							<tr>
+			<th>에어컨</th>
+				<td>
+				<span>
+					<input type="radio"id="air_y"
+    name="air_conditioner"  value="1" checked="checked" />
+					<label for="air_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="air_n" name="air_conditioner" value="0"/>
+					<label for="air_n">없어요</label>
+				</span>
+				</td>
+			</tr>
+							<tr>
+			<th>세탁기</th>
+				<td>
+				<span>
+					<input type="radio"id="washer_y"
+    name="washer"  value="1" checked="checked" />
+					<label for="washer_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="washer_n" name="washer" value="0"/>
+					<label for="washer_n">없어요</label>
+				</span>
+				</td>
+			</tr>
+			<tr>
+			<th>투룸</th>
+			<td>
+				<span>
+					<input type="radio" id="two_y" name="two_room" value="1"/>
+					<label for="two_y">맞아요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio" id="two_n"
+					name="two_room" value="0" checked="checked"/>
+					<label for="two_n">아니에요</label>
+				</span>
+			</td></tr>
+
+			<tr>
+			<th>베란다</th>
+				<td>
+				<span>
+					<input type="radio"id="ver" name="veranda"  value="1"/>
+					<label for="ver">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="0ver" name="veranda" value="0"/>
+					<label for="0ver">없어요</label>
+				</span>
+				</td>
+			</tr>
+			<tr>
+			<th>부엌</th>	
+				<td>
+				<span>
+					<input type="radio" id="kitchen_1" name="kitchen"  value="1"/>
+					<label for="kitchen_1">일체형</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio" id="kitchen_0" name="kitchen" value="0"/>
+
+					<label for="kitchen_0">분리형</label>
+				</span>
+				</td>
+			</tr>
+			<tr>
+			<th>TV</th>
+			<td>
+				<span>
+					<input type="radio" id="tv_y" name="tv"  value="1"/>
+					<label for="tv_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio" id="tv_n" name="tv" value="0"/>
+					<label for="tv_n">없어요</label>
+				</span>
+			</td></tr>
+			<tr>
+			<th>전자레인지</th>
+			<td>
+				<span>
+					<input type="radio"id="mw_y" name="microwave" value="1"/>
+					<label for="mw_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="mw_n" name="microwave" value="0"/>
+					<label for="mw_n">없어요</label>
+				</span>
+			</td></tr>
+						<tr>
+			<th>침대</th>
+			<td>
+				<span>
+					<input type="radio"id="bed_y" name="bed" value="1"/>
+					<label for="bed_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="bed_n" name="bed" value="0"/>
+					<label for="bed_n">없어요</label>
+				</span>
+			</td></tr>
+			<tr>
+			<th>가열기구</th>
+			<td>
+				<span>
+					<input type="radio"id="fire_1" name="fire_type" value="1"/>
+					<label for="fire_1">쿡탑</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="fire_0" name="fire_type" value="0"/>
+					<label for="fire_0">가스레인지</label>
+				</span>
+			</td></tr>
+			<tr>
+			<th>책상</th>
+			<td>
+				<span>
+					<input type="radio"id="desk_y" name="desk" value="1"/>
+					<label for="desk_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="desk_n" name="desk" value="0"/>
+					<label for="desk_n">없어요</label>
+				</span>
+			</td></tr>
+
+			<tr>
+			<th>엘리베이터</th>
+			<td>
+				<span>
+					<input type="radio"id="elevator_y" name="elevator" value="1"/>
+					<label for="elevator_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="elevator_n" name="elevator" value="0"/>
+					<label for="elevator_n">없어요</label>
+				</span>
+			</td></tr>
+			
+			</table>
+			<table id="table2">
+			<tr>
+			<th>해쉬태그</th>
+			<td><input id ="hash" type="text" name="hash1" placeholder="#햇빛 => 햇빛"/>
+			</td>
+			<td>
+			<input id ="hash" type="text" name="hash2" placeholder="#햇빛 => 햇빛"/>
+			</td>
+			<td>
+			<input id ="hash" type="text" name="hash3" placeholder="#햇빛 => 햇빛"/>
+			</td></tr>
+			<tr>
+			<td height=10px>&nbsp;</td></tr>
+						  <tr>
+			    <th>방 상세정보</th>
+			    <td><textarea name="detail"
+				placeholder="상세정보 입력"></textarea></td>
+			  </tr>
+
+			<tr>
+			<th>사진들</th>
+			<td>
+			  {{ formset.management_form }}
+			  {% for form in formset %}
+			  {{ form }}
+			  {% endfor %}</td></tr>
+			</table>
+			
+			<input type="submit" name="submit" value="등록" />
+		</form>
+        </div>
+        <div id="result">
+	  <table>
+	    <tr>
+	      <th>층</th>
+	      <th>크기</th>
+	      <th>지역</th>
+	      <th>보증금</th>
+	      <th>월세</th>
+	      <th>관리비</th>
+	      <th>기간</th>
+	      <th>에어컨</th>
+	      <th>세탁기</th>
+	      <th>투룸</th>
+	    </tr>
+	    <tr>
+      	      <th>베란다</th>
+      	      <th>부엌</th>
+	      <th>tv</th>
+	      <th>전자레인지</th>
+	      <th>침대</th>
+	      <th>가열기구</th>
+      	      <th>책상</th>
+	      <th>엘리베이터</th>
+	      <th>해쉬태그</th>
+	      <tr>
+      		<th colspan=10><p align=left>방 상세정보</p></th>
+		</tr>
+	      </tr>
+	      <tr>
+	      <th colspan=10><p align=left>사진들</p><th>
+	    </tr>
+	    {% if rooms %}
+	    <ul>
+	      {% for roomRow in rooms %}	
+	      <tr class="tr_line">
+		<td><p align=center>{{ roomRow.floor }}층</p></td>
+		<td><p align=center>{{ roomRow.size }}평</p></td>
+		<td><p align=center>{{ roomRow.area }}구역</p></td>
+  		<td><p align=center>{{ roomRow.security_deposit }}만원</p></td>
+		<td><p align=center>{{ roomRow.month_price }}만원</p></td>
+		<td><p align=center>{{ roomRow.management_cost }}만원</p></td>
+		<td><p align=center>{{ roomRow.term }}</p></td>
+		{% if roomRow.air_conditioner == 1 %}
+		<td><p align=center>O</p></td>
+		{% else %}
+		<td><p align=center>X</p></td>
+		{% endif %}
+		
+		{% if roomRow.washer == 1 %}
+		<td><p align=center>O</p></td>
+		{% else %}
+		<td><p align=center>X</p></td>
+		{% endif %}
+
+		{% if roomRow.two_room == 1 %}
+		<td><p align=center>O</p></td>
+		{% else %}
+		<td><p align=center>X</p></td>
+		{% endif %}
+
+	      </tr>
+	      <tr>
+		
+		{% if roomRow.verande == 1 %}
+		<td><p align=center>O</p></td>
+		{% else %}
+		<td><p align=center>X</p></td>
+		{% endif %}
+
+		{% if roomRow.kitchen == 1 %}
+		<td><p align=center>일체형</p></td>
+		{% else %}
+		<td><p align=center>분리형</p></td>
+		{% endif %}
+		
+		{% if roomRow.tv == 1 %}
+		<td><p align=center>O</p></td>
+		{% else %}
+		<td><p align=center>X</p></td>
+		{% endif %}
+
+		{% if roomRow.microwave == 1 %}
+		<td><p align=center>O</p></td>
+		{% else %}
+		<td><p align=center>X</p></td>
+		{% endif %}
+
+		{% if roomRow.bed == 1 %}
+		<td><p align=center>O</p></td>
+		{% else %}
+		<td><p align=center>X</p></td>
+		{% endif %}
+
+		{% if roomRow.fire_type == 1 %}
+		<td><p align=center>쿡탑</p></td>
+		{% else %}
+		<td><p align=center>가스레인지</p></td>
+		{% endif %}
+
+		{% if roomRow.desk == 1 %}
+		<td><p align=center>O</p></td>
+		{% else %}
+		<td><p align=center>X</p></td>
+		{% endif %}
+
+		{% if roomRow.elevator == 1 %}
+		<td><p align=center>O</p></td>
+		{% else %}
+		<td><p align=center>X</p></td>
+		{% endif %}
+		
+		<td><p align=center>{{ roomRow.hash1 }},
+		{{roomRow.hash2 }}, {{ roomRow.hash3 }}</p></td>
+		<td><input type=button value="삭제"
+		OnClick="javascript:room_delete({{ roomRow.id }})"></td>
+<tr>
+		  <td colspan=10><p align=left>{{ roomRow.detail }}</p></td>
+		  </tr>
+		</tr>
+		{% if roomRow.images %}
+		<tr>
+		  {% for imageRow in roomRow.images %}
+		  <td><img src="{{ imageRow }}" width="50" height="50"><td>
+		    {% endfor %}
+		</tr>
+		{% endif %}
+		{% endfor %}
+	    </ul>
+	    {% endif %}
+	  </table>
+	</div> 
+    </div>
+</div>
+
+<script language="javascript">
+function room_delete(id) {
+var url = '/delete_room?id=';
+location.href = url.concat(id);
+}
+</script>
+
+</body>
+</html>

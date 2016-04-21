@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/index13.css' %}" type="text/css"/>
+<meta http-equiv=Content-Type Content="text/html; charset=utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<title>사방팔방 관리자 페이지</title>
+
+<body>
+<div id="container">
+    <div id="logo"> 
+
+		<tr>
+		<p class="main" id="main1">한양 21공인중개사 관리자 페이지<br></p>
+		</tr>
+		<tr>
+		<p class="main" id="main2">
+		주소 : 경기도 안산시 상록구 한양 대학로 38-1 (사동 1570-5)<br>
+		사업자등록번호 : 가3690-공3006<br>
+		대표 : 김상아<br>
+		</p>
+		</tr>
+    </div>
+
+    <div id="wrapper"> 
+  <div id="input">
+      <form name="roomform" action="." onsubmit="return validateForm()" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+      <table>
+		<tr>
+		  <th>층</th>
+			<td>
+			<span>
+			  <select class="form-control" name="floor">
+			    <option value="-1">반지하</option>
+				<option value="1">1층</option>
+				<option value="2">2층</option>
+				<option value="3">3층</option>
+				<option value="4">4층</option>
+				<option value="5">5층</option>
+			</select>
+			</span>
+		      </td>
+		    </tr>
+		    <tr>
+		      <th>크기</th>
+		      <td>
+			<span><input id="size" class="field" type="text" name="size"
+    placeholder="평으로 입력" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'/></span>
+		      </td>
+		    </tr>
+			<tr>
+			<th>지역</th>
+			<td>
+			<span>
+			<select class="form-control" name="area">
+				<option value="1">1구역</option>
+				<option value="2">2구역</option>
+				<option value="3">3구역</option>
+				<option value="4">4구역</option>
+				<option value="5">5구역</option>
+				<option value="6">6구역</option>
+			</select>
+			</span>
+			</td>
+			</tr>
+			<tr>
+			<th>보증금</th>
+			<td>
+			<span>
+			<input id="security_deposit" class="field" type="text" name="security_deposit" placeholder="ex)300만원 => 300" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'/>
+			</span>
+			</td>
+			</tr>
+			<tr>
+			<th>월세</th>
+			<td>
+			<span><input id="month_price"  class="field" type="text" name="month_price" placeholder="숫자만 입력" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'/></span>
+			</td>
+			</tr>
+			<tr>
+			<th>관리비</th>
+			<td><span><input id="management_cost" class="field" type="text" name="management_cost" placeholder="숫자만 입력" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'/></span></td></tr>
+			<tr>
+			 	<th>기간</th>
+				<td><span><select class="form-control" name="term">
+					<option value="6개월">6개월</option>
+					<option value="12개월">12개월</option>
+					<option value="24개">24개월</option>
+				</select>
+				</span>
+				</td>
+				</tr>
+							<tr>
+			<th>에어컨</th>
+				<td>
+				<span>
+					<input type="radio"id="air_y"
+    name="air_conditioner"  value="1" checked="checked" />
+					<label for="air_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="air_n" name="air_conditioner" value="0"/>
+					<label for="air_n">없어요</label>
+				</span>
+				</td>
+			</tr>
+							<tr>
+			<th>세탁기</th>
+				<td>
+				<span>
+					<input type="radio"id="washer_y"
+    name="washer"  value="1" checked="checked" />
+					<label for="washer_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="washer_n" name="washer" value="0"/>
+					<label for="washer_n">없어요</label>
+				</span>
+				</td>
+			</tr>
+			<tr>
+			<th>투룸</th>
+			<td>
+				<span>
+					<input type="radio" id="two_y" name="two_room" value="1"/>
+					<label for="two_y">맞아요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio" id="two_n"
+					name="two_room" value="0" checked="checked"/>
+					<label for="two_n">아니에요</label>
+				</span>
+			</td></tr>
+
+			<tr>
+			<th>베란다</th>
+				<td>
+				<span>
+					<input type="radio"id="ver" name="veranda"  value="1"/>
+					<label for="ver">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="0ver" name="veranda" value="0"/>
+					<label for="0ver">없어요</label>
+				</span>
+				</td>
+			</tr>
+			<tr>
+			<th>부엌</th>	
+				<td>
+				<span>
+					<input type="radio" id="kitchen_1" name="kitchen"  value="1"/>
+					<label for="kitchen_1">일체형</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio" id="kitchen_0" name="kitchen" value="0"/>
+
+					<label for="kitchen_0">분리형</label>
+				</span>
+				</td>
+			</tr>
+			<tr>
+			<th>TV</th>
+			<td>
+				<span>
+					<input type="radio" id="tv_y" name="tv"  value="1"/>
+					<label for="tv_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio" id="tv_n" name="tv" value="0"/>
+					<label for="tv_n">없어요</label>
+				</span>
+			</td></tr>
+			<tr>
+			<th>전자레인지</th>
+			<td>
+				<span>
+					<input type="radio"id="mw_y" name="microwave" value="1"/>
+					<label for="mw_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="mw_n" name="microwave" value="0"/>
+					<label for="mw_n">없어요</label>
+				</span>
+			</td></tr>
+						<tr>
+			<th>침대</th>
+			<td>
+				<span>
+					<input type="radio"id="bed_y" name="bed" value="1"/>
+					<label for="bed_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="bed_n" name="bed" value="0"/>
+					<label for="bed_n">없어요</label>
+				</span>
+			</td></tr>
+			<tr>
+			<th>가열기구</th>
+			<td>
+				<span>
+					<input type="radio"id="fire_1" name="fire_type" value="1"/>
+					<label for="fire_1">쿡탑</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="fire_0" name="fire_type" value="0"/>
+					<label for="fire_0">가스레인지</label>
+				</span>
+			</td></tr>
+			<tr>
+			<th>책상</th>
+			<td>
+				<span>
+					<input type="radio"id="desk_y" name="desk" value="1"/>
+					<label for="desk_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="desk_n" name="desk" value="0"/>
+					<label for="desk_n">없어요</label>
+				</span>
+			</td></tr>
+			<tr>
+			<th>엘리베이터</th>
+			<td>
+				<span>
+					<input type="radio"id="elevator_y" name="elevator" value="1"/>
+					<label for="elevator_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="elevator_n" name="elevator" value="0"/>
+					<label for="elevator_n">없어요</label>
+				</span>
+			</td></tr>
+			<tr>
+			<th>옷장</th>
+			<td>
+				<span>
+					<input type="radio"id="wardrobe_y" name="wardrobe" value="1"/>
+					<label for="wardrobe_y">있어요</label>
+				</span>
+				</td>
+				<td>
+				<span>
+					<input type="radio"id="wardrobe_n" name="wardrobe" value="0"/>
+					<label for="wardrobe_n">없어요</label>
+				</span>
+			</td></tr>
+			</table>
+			<table id="table2">
+			<tr>
+			<th>해쉬태그</th>
+			<td><input id ="hash" type="text" name="hash1" placeholder="#햇빛 => 햇빛"/>
+			</td>
+			<td>
+			<input id ="hash" type="text" name="hash2" placeholder="#햇빛 => 햇빛"/>
+			</td>
+			<td>
+			<input id ="hash" type="text" name="hash3" placeholder="#햇빛 => 햇빛"/>
+			</td></tr>
+			<tr>
+			<td height=10px>&nbsp;</td></tr>
+						  <tr>
+			    <th>방 상세정보</th>
+			    <td><textarea name="detail"
+				placeholder="상세정보 입력"></textarea></td>
+			  </tr>
+
+			<tr>
+			<th>사진들</th>
+			<td>
+			  {{ formset.management_form }}
+			  {% for form in formset %}
+			  {{ form }}
+			  {% endfor %}</td></tr>
+			</table>
+<div id="submit_button">
+			<button type="submit" name="submit" class="btn btn-danger">등록</button>
+</div>
+		</form>
+        </div>
+    <div id="result">
+    {% if rooms %}
+   	<ul>
+    {% for roomRow in rooms %} 
+	<table id="tableresult">
+    <tr class="optionname">
+        <td>층</td>
+        <td>크기</td>
+        <td>지역</td>
+        <td>보증금</td>
+        <td>월세/관리비</td>
+        <td>기간</td>
+        <td>상세정보</td>
+    </tr>
+    <tr class="optionvalue">
+      {% if roomRow.floor == -1 %}
+      <td>반지하</td>
+{% else %}
+        <td>{{ roomRow.floor }}층</td>
+{% endif %}
+        <td>{{ roomRow.size }}평</td>
+        <td>{{ roomRow.area }}구역</td>
+        <td>{{ roomRow.security_deposit }}만원</td>
+        <td>{{ roomRow.month_price }}/{{ roomRow.management_cost }}만원</td>
+        <td>{{ roomRow.term }}</td>
+    	<td rowspan="3">{{ roomRow.detail }}</td>
+    </tr>
+    <tr class="optionname">
+        <td>에어컨</td>
+        <td>세탁기</td>
+        <td>tv</td>
+        <td>전자레인지</td>
+        <td>베란다</td>
+        <td>책상</td>
+    </tr>
+    <tr class="optionvalue">
+    	{% if roomRow.air_conditioner == 1 %}
+        <td>O</td>
+		{% else %}
+		<td>X</td>
+		{% endif %}
+
+        {% if roomRow.washer == 1 %}
+        <td>O</td>
+		{% else %}
+		<td>X</td>
+		{% endif %}
+
+        {% if roomRow.tv == 1 %}
+        <td>O</td>
+		{% else %}
+		<td>X</td>
+		{% endif %}
+        
+        {% if roomRow.microwave == 1 %}
+        <td>O</td>
+		{% else %}
+		<td>X</td>
+		{% endif %}
+        
+        {% if roomRow.verande == 1 %}
+        <td>O</td>
+		{% else %}
+		<td>X</td>
+		{% endif %}
+        
+        {% if roomRow.desk == 1 %}
+        <td>O</td>
+		{% else %}
+		<td>X</td>
+		{% endif %}
+    </tr>
+    <tr class="optionname">
+        <td>침대</td>
+        <td>투룸</td>
+        <td>부엌</td>
+        <td>가열기구</td>
+        <td>엘리베이터</td>
+	<td>옷장</td>
+        <td>해쉬태그</td>
+    </tr>
+    <tr class="optionvalue">
+        {% if roomRow.bed == 1 %}
+		<td>O</td>
+		{% else %}
+		<td>X</td>
+		{% endif %}
+
+        {% if roomRow.two_room == 1 %}
+		<td>O</td>
+		{% else %}
+		<td>X</td>
+		{% endif %}
+
+        {% if roomRow.kitchen == 1 %}
+		<td>일체형</td>
+		{% else %}
+		<td>분리형</td>
+		{% endif %}
+        
+        {% if roomRow.fire_type == 1 %}
+		<td>쿡탑</td>
+		{% else %}
+		<td>가스레인지</td>
+		{% endif %}
+
+        {% if roomRow.elevator == 1 %}
+		<td>O</td>
+		{% else %}
+		<td>X</td>
+		{% endif %}
+
+        {% if roomRow.wardrobe == 1 %}
+		<td>O</td>
+		{% else %}
+		<td>X</td>
+		{% endif %}
+
+        <td>{{ roomRow.hash1 }},
+		{{roomRow.hash2 }}, {{ roomRow.hash3 }}</td>
+    </tr>
+    <tr class="optionvalue">
+    {% for imageRow in roomRow.images %}
+		<td><img src="{{ imageRow }}" width="50" height="50" alt="image"></td>
+	{% endfor %}
+{% if roomRow.images|length == 5 %}
+		<td></td>
+{% elif roomRow.images|length == 4 %}
+		<td></td><td></td>
+{% elif roomRow.images|length == 3 %}
+		<td></td><td></td><td></td>
+{% elif roomRow.images|length == 2 %}
+		<td></td><td></td><td></td><td></td>
+{% elif roomRow.images|length == 1 %}
+		<td></td><td></td><td></td><td></td><td></td>
+{% elif roomRow.images|length == 0 %}
+		<td></td><td></td><td></td><td></td><td></td><td></td>
+{% endif %}
+	<td><button class="btn btn-danger" OnClick="javascript:room_delete({{ roomRow.id }})">삭제</button></td>
+    </tr>
+	</table>
+	{% endfor %}
+    </ul>
+    {% endif %}
+    </div>
+    </div>
+    </div>
+</div>
+<script language="javascript">
+function room_delete(id) {
+var url = '/delete_room?id=';
+location.href = url.concat(id);
+}
+
+function validateForm() {
+var size = document.getElementById("size");
+var securityDeposit = document.getElementById("security_deposit");
+var monthPrice = document.getElementById("month_price");
+var managementCost = document.getElementById("management_cost");
+var veranda = document.getElementsByName("veranda");
+
+if (size.value == ""){
+alert("크기를 입력해주세요.");
+return false;
+} else if (securityDeposit.value == ""){
+alert("보증금을 입력해주세요.");
+return false;
+} else if (monthPrice.value == ""){
+alert("월세를 입력해주세요.");
+return false;
+} else if (managementCost.value == ""){
+alert("관리비를 입력해주세요.");
+return false;
+} else if (($('input[name="veranda"]:checked').size() > 0)){
+alert("선택");
+return false;
+}
+}
+
+function onlyNumber(event){
+event = event || window.event;
+var keyID = (event.which) ? event.which : event.keyCode;
+if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+							      return;
+							      else
+							      return false;
+							      }
+							      function removeChar(event) {
+							      event = event || window.event;
+							      var keyID = (event.which) ? event.which : event.keyCode;
+							      if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+							      return;
+							      else
+							      event.target.value = event.target.value.replace(/[^0-9]/g, "");
+							      }
+</script>
+</body>
+</html>
